@@ -18,6 +18,4 @@ use App\Http\Controllers\CountriesController;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('/v1/countries', [CountriesController::class, 'index']);
-Route::post('/v1/countries', [CountriesController::class, 'store']);
 

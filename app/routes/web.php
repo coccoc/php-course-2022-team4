@@ -16,8 +16,3 @@ use App\Http\Controllers\CountriesController;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::post('/', function () {
-    return "post method";
-});
-// Route::get('/api/v1/countries', [CountriesController::class, 'index']);
-// Route::post('/api/v1/countries', [CountriesController::class, 'store']);
