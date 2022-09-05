@@ -1,6 +1,4 @@
-# php-course-2022-team4
-
-# php-stock-exchange
+# php-course-2022 team4 Stock-exchange
 
 ## Installation
 
