@@ -1,0 +1,55 @@
+version: "3"
+
+services:
+  nginx:
+    image: nginx:latest
+    container_name: php_course_nginx
+    depends_on:
+      - app
+    volumes:
+      - ./:/var/www
+      - ./docker/nginx/server.conf:/etc/nginx/conf.d/default.conf
+    ports:
+      - '${DOCKER_NGINX_EXTERNAL_PORT}:80'
+    networks:
+      - default
+  app:
+    build:
+      context: .
+      dockerfile: ./docker/php/Dockerfile
+    container_name: php_course_app
+    depends_on:
+      - db
+    volumes:
+      - ./:/var/www
+    expose:
+      - '9000'
+    environment:
+      PHP_OPCACHE_VALIDATE_TIMESTAMPS: 1
+    networks:
+      - default
+  db:
+    image: mariadb:10.4
+    container_name: php_course_mysql
+    tty: true
+    ports:
+      - '${DOCKER_MYSQL_EXTERNAL_PORT}:3306'
+    environment:
+      MYSQL_DATABASE: stock_exchange
+      MYSQL_USER: php_course
+      MYSQL_PASSWORD: dev@123
+      MYSQL_ROOT_PASSWORD: dev@123
+      MYSQL_ROOT_HOST: '%'
+      TZ: Asia/Ho_Chi_Minh
+    volumes:
+      - mysql-db:/var/lib/mysql/
+    command: mysqld --sql_mode=""
+    networks:
+      - default
+
+volumes:
+  mysql-db:
+    driver: local
+networks:
+  default:
+    driver: bridge
