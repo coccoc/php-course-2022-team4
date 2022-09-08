@@ -76,10 +76,10 @@ class CreateTables extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('clients');
-        Schema::dropIfExists('stocks');
-        Schema::dropIfExists('order_buys');
-        Schema::dropIfExists('order_sells');
         Schema::dropIfExists('transactions');
+        Schema::dropIfExists('order_sells');
+        Schema::dropIfExists('order_buys');
+        Schema::dropIfExists('stocks');
+        Schema::dropIfExists('clients');
     }
 }
