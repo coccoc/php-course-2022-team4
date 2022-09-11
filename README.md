@@ -9,14 +9,14 @@ cp .env.example .env
 cp ./app/.env.example ./app/.env
 ```
 
-Change file `./app/.env` database infomation from docker-compose.yml. eg:
+Change below part in file `./app/.env` to database infomation from docker-compose.yml:
 ```
 DB_CONNECTION=mysql
-DB_HOST=db
+DB_HOST={DB_HOST_IN_DOCER_COMPOSE}
 DB_PORT=3306
-DB_DATABASE=stock_exchange
-DB_USERNAME=php_course
-DB_PASSWORD=dev@123
+DB_DATABASE={DB_DATABASE_IN_DOCER_COMPOSE}
+DB_USERNAME={DB_USERNAME_IN_DOCER_COMPOSE}
+DB_PASSWORD={DB_PASSWORD_IN_DOCER_COMPOSE}
 ```
 
 
@@ -33,21 +33,31 @@ docker-compose up
 ```
 
 Run the following command to install the package through Composer:
+```bash
+docker-compose exec composer install
+```
 
+
+## Migration database in docker app enviroment
+Enter docker app terminal:
 ```bash
 docker-compose exec app bash
 ```
 
-## Migration database in docker app enviroment
-Run migration database in docker-compose exec terminal
+Run migration database and seeding data in docker-compose exec terminal
 
 ```bash
 composer install
+
+# Run migration
 php artisan migrate
+
+# Refresh the database and run all database seeds...
+php artisan migrate:refresh --seed
 ```
 
 ## If directory permission deny
-Run in actual folder
+Run in actual folder to grand permission for docker to use that forder
 ```bash
 chmod -R 777 ./app
 ```
@@ -58,4 +68,10 @@ Stop docker
 
 ```
 docker-compose stop
+```
+
+Full reset docker environment
+
+```
+docker-compose down -v
 ```
