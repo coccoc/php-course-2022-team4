@@ -75,3 +75,10 @@ Full reset docker environment
 ```
 docker-compose down -v
 ```
+
+### Include JWT in the app
+
+```
+composer update
+php artisan jwt:secret
+```
