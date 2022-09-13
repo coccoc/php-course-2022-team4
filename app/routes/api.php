@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 // use App\Http\Controllers\CountriesController;
 
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -43,3 +44,4 @@ Route::group([
     Route::post('refresh', 'AuthController@refresh');
     Route::get('me', 'AuthController@me');
 });
+
