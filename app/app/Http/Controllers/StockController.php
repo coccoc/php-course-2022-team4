@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\AddStockRequest;
+use App\Http\Requests\UpdateStockRequest;
 use App\Models\Stock;
 use Illuminate\Http\Request;
 

@@ -9,6 +9,7 @@ class Stock extends Model
 {
     use HasFactory;
     protected $table = 'stocks';
+    protected $fillable = ['name', 'init_price', 'total_amount'];
     public function run()
     {
         Stock::factory()

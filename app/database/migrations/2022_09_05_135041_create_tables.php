@@ -26,7 +26,7 @@ class CreateTables extends Migration
         Schema::create('stocks', function (Blueprint $table) {
             $table->id();
             $table->string('name')->unique();
-            $table->string('alias')->unique();
+            $table->string('alias')->nullable();
             $table->integer('total_amount');
             $table->decimal('init_price', 10, 2);
             $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));

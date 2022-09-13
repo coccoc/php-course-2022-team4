@@ -3,7 +3,7 @@
 use App\Http\Controllers\StockController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CountriesController;
+// use App\Http\Controllers\CountriesController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,10 +26,10 @@ Route::get('/', function (Request $request) {
 
 Route::prefix('stock')->group(function () {
     Route::get('/', [StockController::class, 'index']);
-    Route::get('/{id}', [StockController::class, 'show']);
-    Route::post('/', [StockController::class, 'store']);
-    Route::put('/{id}', [StockController::class, 'update']);
-    Route::delete('/{id}', [StockController::class, 'destroy']);
+    Route::get('{id}', [StockController::class, 'show']);
+    Route::post('/add/', [StockController::class, 'store']);
+    Route::put('/update/{id}', [StockController::class, 'update']);
+    Route::delete('/remove/{id}', [StockController::class, 'destroy']);
 });
 
 Route::group([
